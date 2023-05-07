@@ -1,0 +1,34 @@
+name: add 2 to base 3
+source code: |
+  # Adds 2 to a base three number.
+  input: '222'
+  blank: ' '
+  start state: left
+  table:
+    # scan to the rightmost digit
+    left:
+      [2,1,0]: R
+      ' '  : {L: q1}
+    q1:
+      2      : {write: 0, L: q1}
+      1      : {write: 2, L: q2}
+      [' ',0]: {write: 1, L: q2}
+    q2:
+      [2,1,0]: L
+      ' '    : {R: q3}
+    q3:
+      [2,1,0]: R
+      ' '    : {L: q4}
+    q4:
+      2      : {write: 0, L: q4}
+      1      : {write: 2, L: done}
+      [' ',0]: {write: 1, L: done}
+    done:
+    
+positions:
+  left: {x: 457.2, y: 118.46, fixed: false}
+  q1: {x: 316.5, y: 130.92, fixed: false}
+  q2: {x: 259.16, y: 260.2, fixed: false}
+  q3: {x: 335.35, y: 379.47, fixed: false}
+  q4: {x: 475.1, y: 358.26, fixed: false}
+  done: {x: 570, y: 250}
